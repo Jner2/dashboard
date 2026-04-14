@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container full-main">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+        <div class="top">
+            <div class="logo">
+                <img src="Flood.png" class="logo-img">
+            </div>
+        </div>
+
+        <div class="sidebar">
+
+            <a href="Dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <h3>Dashboard</h3>
+            </a>
+
+            <a href="Monitoring.html">
+                <span class="material-symbols-outlined">videocam</span>
+                <h3>Monitoring</h3>
+            </a>
+
+            <a href="History.html">
+                <span class="material-symbols-outlined">history</span>
+                <h3>History</h3>
+            </a>
+
+            <a href="System.html">
+                <span class="material-symbols-outlined">settings_input_component</span>
+                <h3>System</h3>
+            </a>
+
+            <a href="Settings.html">
+                <span class="material-symbols-outlined">settings</span>
+                <h3>Settings</h3>
+            </a>
+
+            <a href="#" class="logout-link">
+                <span class="material-symbols-outlined">logout</span>
+                <h3>Logout</h3>
+            </a>
+
+        </div>
+
+    </aside>
+    <!-- END SIDEBAR -->
+
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- TITLE (LEFT like dashboard) -->
+        <h1>Monitoring</h1>
+
+        <!-- CAMERA CENTER -->
+        <div class="camera-container">
+
+            <!-- SAN JUAN -->
+            <div class="camera-card">
+
+                <div class="camera-header">
+                    <h2>San Juan River</h2>
+                    <div class="flood-status status-warning">
+                        Warning
+                    </div>
+                </div>
+
+                <div class="camera-view">
+                    <p>Camera Feed Here</p>
+                </div>
+
+            </div>
+
+            <!-- MARKETPLACE -->
+            <div class="camera-card">
+
+                <div class="camera-header">
+                    <h2>Marketplace</h2>
+                    <div class="flood-status status-normal">
+                        Normal
+                    </div>
+                </div>
+
+                <div class="camera-view">
+                    <p>Camera Feed Here</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+    <!-- END MAIN -->
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

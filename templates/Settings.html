@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+        <div class="top">
+            <div class="logo">
+                <img src="Flood.png" class="logo-img">
+            </div>
+
+        </div>
+
+        <div class="sidebar">
+
+            <a href="Dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <h3>Dashboard</h3>
+            </a>
+
+            <a href="Monitoring.html">
+                <span class="material-symbols-outlined">videocam</span>
+                <h3>Monitoring</h3>
+            </a>
+
+            <a href="History.html">
+                <span class="material-symbols-outlined">history</span>
+                <h3>History</h3>
+            </a>
+
+            <a href="System.html">
+                <span class="material-symbols-outlined">settings_input_component</span>
+                <h3>System</h3>
+            </a>
+
+            <a href="Settings.html">
+                <span class="material-symbols-outlined">settings</span>
+                <h3>Settings</h3>
+            </a>
+
+            <a href="#" class="logout-link">
+                <span class="material-symbols-outlined">logout</span>
+                <h3>Logout</h3>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+
+        <h1>Settings</h1>
+
+        <div class="date">
+            <input type="date">
+        </div>
+
+        <!-- GSM SETTINGS -->
+        <div class="card">
+
+            <h2>GSM / SMS Configuration</h2>
+            <br>
+
+            <p>Recipient 1</p>
+            <input type="text" placeholder="+639XXXXXXXXX">
+
+            <p>Recipient 2</p>
+            <input type="text" placeholder="+639XXXXXXXXX">
+
+            <p>Recipient 3</p>
+            <input type="text" placeholder="+639XXXXXXXXX">
+
+            <p>Alert Message</p>
+            <input type="text" placeholder="Flood Warning Detected">
+
+            <br><br>
+
+            <button class="btn">Save GSM Settings</button>
+
+        </div>
+
+
+        <!-- CAMERA SETTINGS -->
+        <div class="card">
+
+            <h2>Camera Settings</h2>
+            <br>
+
+            <p>Camera 1 Name</p>
+            <input type="text" placeholder="San Juan River">
+
+            <p>Camera 2 Name</p>
+            <input type="text" placeholder="Marketplace">
+
+            <p>Resolution</p>
+            <input type="text" placeholder="1920x1080">
+
+            <p>Frame Rate</p>
+            <input type="text" placeholder="30 FPS">
+
+            <br><br>
+
+            <button class="btn">Save Camera Settings</button>
+
+        </div>
+
+
+        <!-- AI SETTINGS -->
+        <div class="card">
+
+            <h2>AI Detection Settings</h2>
+            <br>
+
+            <p>Detection Sensitivity</p>
+            <input type="text" placeholder="Medium">
+
+            <p>Flood Threshold Level</p>
+            <input type="text" placeholder="70%">
+
+            <p>Detection Interval</p>
+            <input type="text" placeholder="5 seconds">
+
+            <br><br>
+
+            <button class="btn">Save AI Settings</button>
+
+        </div>
+
+
+        <!-- SYSTEM PREFERENCES -->
+        <div class="card">
+
+            <h2>System Preferences</h2>
+            <br>
+
+            <p>Dark Mode</p>
+            <button id="dark-mode-btn" class="dark-btn">
+            🌙 Dark Mode
+            </button>
+
+            <br><br>
+
+            <p>Auto Restart</p>
+            <button class="btn">Enable</button>
+
+            <br><br>
+
+            <p>Notification Sound</p>
+            <button class="btn">Enable</button>
+
+        </div>
+
+    </main>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <div class="camera-preview">
+            <h3>Current GSM Recipients</h3>
+
+            <p>+639XXXXXXXXX</p>
+            <p>+639XXXXXXXXX</p>
+            <p>+639XXXXXXXXX</p>
+        </div>
+
+        <div class="camera-preview">
+            <h3>System Mode</h3>
+
+            <p>Dark Mode: Enabled</p>
+            <p>AI Detection: Active</p>
+            <p>SMS Alerts: Enabled</p>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- SIDEBAR -->
+    <aside>
+
+        <div class="top">
+            <div class="logo">
+                <img src="Flood.png" class="logo-img">
+            </div>
+        </div>
+
+        <div class="sidebar">
+
+            <a href="Dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <h3>Dashboard</h3>
+            </a>
+
+            <a href="Monitoring.html">
+                <span class="material-symbols-outlined">videocam</span>
+                <h3>Monitoring</h3>
+            </a>
+
+            <a href="History.html">
+                <span class="material-symbols-outlined">history</span>
+                <h3>History</h3>
+            </a>
+
+            <!-- ✅ ONLY THIS ACTIVE -->
+            <a href="System.html">
+                <span class="material-symbols-outlined">settings_input_component</span>
+                <h3>System</h3>
+            </a>
+
+            <a href="Settings.html">
+                <span class="material-symbols-outlined">settings</span>
+                <h3>Settings</h3>
+            </a>
+
+            <a href="#" class="logout-link">
+                <span class="material-symbols-outlined">logout</span>
+                <h3>Logout</h3>
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main>
+
+        <h1>System Status</h1>
+
+        <div class="date">
+            <input type="date">
+        </div>
+
+        <!-- SYSTEM OVERVIEW -->
+        <div class="card">
+            <h2>System Overview</h2>
+            <br>
+
+            <p><b>System Status:</b> <span class="success">Running</span></p>
+            <p><b>Raspberry Pi:</b> Active</p>
+            <p><b>AI Model:</b> Loaded</p>
+            <p><b>GSM Module:</b> Connected</p>
+            <p><b>Internet:</b> Connected</p>
+            <p><b>Last System Check:</b> 10:10 AM</p>
+        </div>
+
+        <!-- HARDWARE -->
+        <div class="card">
+            <h2>Hardware Status</h2>
+            <br>
+
+            <p>Camera 1 (San Juan River): <span class="success">Connected</span></p>
+            <p>Camera 2 (Marketplace): <span class="success">Connected</span></p>
+            <p>Storage: 32GB Available</p>
+            <p>CPU Usage: 32%</p>
+            <p>RAM Usage: 41%</p>
+            <p>Temperature: 45°C</p>
+        </div>
+
+        <!-- AI MODEL -->
+        <div class="card">
+            <h2>AI Model Information</h2>
+            <br>
+
+            <p>Model: CNN Flood Classifier</p>
+            <p>Dataset: 2,500 Images</p>
+            <p>Accuracy: 88%</p>
+            <p>Framework: Teachable Machine</p>
+            <p>Status: Running</p>
+        </div>
+
+        <!-- LOGS -->
+        <div class="card">
+            <h2>System Logs</h2>
+            <br>
+
+            <p>10:10 AM - Camera 1 Connected</p>
+            <p>10:12 AM - GSM Module Initialized</p>
+            <p>10:13 AM - AI Model Loaded</p>
+            <p>10:15 AM - Monitoring Started</p>
+            <p>10:18 AM - SMS Alert Sent</p>
+        </div>
+
+        <!-- CONTROLS -->
+        <div class="card">
+            <h2>System Controls</h2>
+            <br>
+
+            <button class="btn">Restart System</button>
+            <button class="btn">Restart Cameras</button>
+            <button class="btn">Restart GSM</button>
+            <button class="btn red">Shutdown</button>
+        </div>
+
+    </main>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <div class="camera-preview">
+            <h3>San Juan River Status</h3>
+            <div class="camera-view">Camera Active</div>
+        </div>
+
+        <div class="camera-preview">
+            <h3>Marketplace Status</h3>
+            <div class="camera-view">Camera Active</div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
