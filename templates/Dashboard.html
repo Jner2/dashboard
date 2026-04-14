@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
     
 </head>
 
@@ -21,8 +21,7 @@
 
             <div class="top">
                 <div class="logo">
-                    <img src="Flood.png" class="logo-img">
-                </div>
+                <img src="/static/Flood.png" class="logo-img">
 
             </div>
 
@@ -30,27 +29,27 @@
             
             <div class="sidebar">
 
-                <a href="Dashboard.html">
+<a href="/">
                 <span class="material-symbols-outlined">dashboard</span>
                 <h3>Dashboard</h3>
-                </a>
+            </a>
 
-                <a href="Monitoring.html">
+            <a href="/monitoring">
                 <span class="material-symbols-outlined">videocam</span>
                 <h3>Monitoring</h3>
-                </a>
+            </a>
 
-                <a href="History.html">
+            <a href="/history">
                 <span class="material-symbols-outlined">history</span>
                 <h3>History</h3>
-                </a>
+            </a>
 
-                <a href="System.html">
+            <a href="/system">
                 <span class="material-symbols-outlined">settings_input_component</span>
                 <h3>System</h3>
-                </a>
+            </a>
 
-                <a href="Settings.html">
+            <a href="/settings">
                 <span class="material-symbols-outlined">settings</span>
                 <h3>Settings</h3>
                 </a>
@@ -228,23 +227,51 @@
 
     <!-- right section start -->
         <div class="right">
-            <div class="camera-preview">
+            <div class="camera-preview" id="dash-cam-0">
                 <h3>San Juan River</h3>
                 <div class="camera-view">
-                    <p>Camera Feed</p>
+                    <p>Loading...</p>
                 </div>
             </div>
-            <div class="camera-preview">
+            <div class="camera-preview" id="dash-cam-1">
                 <h3>Marketplace</h3>
                 <div class="camera-view">
-                    <p>Camera Feed</p>
+                    <p>Loading...</p>
                 </div>
             </div>
         </div>
     </div>
     <!-- right section end -->
 
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
+<script>
+(function() {
+    const LABELS = ['San Juan River', 'Marketplace'];
+
+    function poll() {
+        fetch('/usb/status')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var cameras = data.cameras || [];
+                cameras.forEach(function(cam, i) {
+                    var el = document.getElementById('dash-cam-' + i);
+                    if (!el) return;
+                    var label = LABELS[i] || 'Camera ' + (i + 1);
+                    var view = el.querySelector('.camera-view');
+                    if (cam.connected) {
+                        view.innerHTML = '<img src="/usb/' + cam.device_index + '/feed" alt="' + label + '" class="camera-feed-img-sm">';
+                    } else {
+                        view.innerHTML = '<p>Disconnected</p>';
+                    }
+                });
+            })
+            .catch(function() {});
+    }
+
+    poll();
+    setInterval(poll, 10000);
+})();
+</script>
 </body>
 </html>
 

@@ -1,0 +1,86 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual Environments
+.venv
+.env
+*.env.local
+*.env.*.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# Flask
+instance/
+.webassets-cache
+
+# Database & Cache
+*.db
+*.sqlite
+*.sqlite3
+flood_project.db
+
+# Uploads
+uploads/
+*.tmp
+*.bak
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+.AppleDouble
+.LSOverride
+
+# Logs
+*.log
+logs/
+*.pid
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Misc
+.cache/
+.nyc_output/
+coverage/
+*.prof
+debug-logs/

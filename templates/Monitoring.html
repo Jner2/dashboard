@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
@@ -27,33 +27,33 @@
 
         <div class="top">
             <div class="logo">
-                <img src="Flood.png" class="logo-img">
+                <img src="/static/Flood.png" class="logo-img">
             </div>
         </div>
 
         <div class="sidebar">
 
-            <a href="Dashboard.html">
+            <a href="/">
                 <span class="material-symbols-outlined">dashboard</span>
                 <h3>Dashboard</h3>
             </a>
 
-            <a href="Monitoring.html">
+            <a href="/monitoring">
                 <span class="material-symbols-outlined">videocam</span>
                 <h3>Monitoring</h3>
             </a>
 
-            <a href="History.html">
+            <a href="/history">
                 <span class="material-symbols-outlined">history</span>
                 <h3>History</h3>
             </a>
 
-            <a href="System.html">
+            <a href="/system">
                 <span class="material-symbols-outlined">settings_input_component</span>
                 <h3>System</h3>
             </a>
 
-            <a href="Settings.html">
+            <a href="/settings">
                 <span class="material-symbols-outlined">settings</span>
                 <h3>Settings</h3>
             </a>
@@ -76,40 +76,8 @@
         <h1>Monitoring</h1>
 
         <!-- CAMERA CENTER -->
-        <div class="camera-container">
-
-            <!-- SAN JUAN -->
-            <div class="camera-card">
-
-                <div class="camera-header">
-                    <h2>San Juan River</h2>
-                    <div class="flood-status status-warning">
-                        Warning
-                    </div>
-                </div>
-
-                <div class="camera-view">
-                    <p>Camera Feed Here</p>
-                </div>
-
-            </div>
-
-            <!-- MARKETPLACE -->
-            <div class="camera-card">
-
-                <div class="camera-header">
-                    <h2>Marketplace</h2>
-                    <div class="flood-status status-normal">
-                        Normal
-                    </div>
-                </div>
-
-                <div class="camera-view">
-                    <p>Camera Feed Here</p>
-                </div>
-
-            </div>
-
+        <div class="camera-container" id="camera-container">
+            <p id="camera-loading">Scanning for cameras...</p>
         </div>
 
     </main>
@@ -117,7 +85,89 @@
 
 </div>
 
-<script src="script.js"></script>
+<script src="/static/script.js"></script>
+<script>
+(function() {
+    const LABELS = ['San Juan River', 'Marketplace'];
+    const container = document.getElementById('camera-container');
+    const loading = document.getElementById('camera-loading');
+    let rendered = false;
+
+    function statusClass(state) {
+        if (!state) return 'status-normal';
+        const s = state.toUpperCase();
+        if (s === 'CRITICAL') return 'status-critical';
+        if (s === 'WARNING' || s === 'OVERFLOW') return 'status-warning';
+        return 'status-normal';
+    }
+
+    function buildCards(cameras) {
+        container.innerHTML = '';
+        if (cameras.length === 0) {
+            container.innerHTML = '<p>No cameras detected. <button onclick="scanCameras()" class="btn">Scan</button></p>';
+            return;
+        }
+        cameras.forEach(function(cam, i) {
+            const label = LABELS[i] || 'Camera ' + (i + 1);
+            const card = document.createElement('div');
+            card.className = 'camera-card';
+            card.id = 'cam-card-' + cam.device_index;
+            card.innerHTML =
+                '<div class="camera-header">' +
+                '  <h2>' + label + '</h2>' +
+                '  <div class="flood-status ' + statusClass(cam.display_state) + '" id="cam-status-' + cam.device_index + '">' +
+                     (cam.display_state || 'WAITING') +
+                '  </div>' +
+                '</div>' +
+                '<div class="camera-view">' +
+                (cam.connected
+                    ? '<img src="/usb/' + cam.device_index + '/feed" alt="' + label + ' Feed" class="camera-feed-img">'
+                    : '<p>Camera Disconnected</p>') +
+                '</div>' +
+                '<div class="camera-info">' +
+                '  <span id="cam-level-' + cam.device_index + '">' + (cam.display_text || 'No data') + '</span>' +
+                '</div>';
+            container.appendChild(card);
+        });
+        rendered = true;
+    }
+
+    function updateStatus(cameras) {
+        cameras.forEach(function(cam) {
+            var badge = document.getElementById('cam-status-' + cam.device_index);
+            if (badge) {
+                badge.textContent = cam.display_state || 'WAITING';
+                badge.className = 'flood-status ' + statusClass(cam.display_state);
+            }
+            var level = document.getElementById('cam-level-' + cam.device_index);
+            if (level) level.textContent = cam.display_text || 'No data';
+        });
+    }
+
+    function poll() {
+        fetch('/usb/status')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var cameras = data.cameras || [];
+                if (!rendered) buildCards(cameras);
+                else updateStatus(cameras);
+            })
+            .catch(function() {
+                if (!rendered) {
+                    container.innerHTML = '<p>Unable to reach camera service.</p>';
+                }
+            });
+    }
+
+    window.scanCameras = function() {
+        fetch('/usb/scan', { method: 'POST' })
+            .then(function() { rendered = false; poll(); });
+    };
+
+    poll();
+    setInterval(poll, 4000);
+})();
+</script>
 
 </body>
 </html>

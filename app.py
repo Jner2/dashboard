@@ -8,8 +8,13 @@ import time
 import sqlite3
 import threading
 
-app = Flask(__name__)
+from usb_connection import usb_bp, start_usb_scanner
+
+app = Flask(__name__, static_folder='static', static_url_path='/static', template_folder='templates')
 CORS(app)
+
+# Register USB camera blueprint
+app.register_blueprint(usb_bp)
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
@@ -69,6 +74,26 @@ def index():
     # Looks for Dashboard.html in the 'templates' folder
     return render_template('Dashboard.html')
 
+@app.route('/monitoring')
+def monitoring():
+    return render_template('Monitoring.html')
+
+@app.route('/history')
+def history():
+    return render_template('History.html')
+
+@app.route('/system')
+def system():
+    return render_template('System.html')
+
+@app.route('/settings')
+def settings():
+    return render_template('Settings.html')
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('Dashboard.html')
+
 @app.route('/api/flood-status', methods=['GET'])
 def get_status():
     cpu_usage = psutil.cpu_percent(interval=None)
@@ -119,11 +144,6 @@ def send_manual_sms():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
-# Helper to catch CSS/JS files if they aren't in a static folder
-@app.route('/<path:path>')
-def send_static(path):
-    return send_from_directory('.', path)
-
 # --- 4. START EVERYTHING ---
 if __name__ == '__main__':
     init_db()
@@ -131,6 +151,9 @@ if __name__ == '__main__':
     # Start SMS listener in background
     thread = threading.Thread(target=sms_listener, daemon=True)
     thread.start()
+    
+    # Start USB camera scanner
+    start_usb_scanner()
     
     # Run server
     print("Dashboard starting at http://localhost:5000")
