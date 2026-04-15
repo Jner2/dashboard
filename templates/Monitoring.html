@@ -6,168 +6,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monitoring</title>
 
-    <!-- Icons -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-
-    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-    <!-- CSS -->
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-
-<div class="container full-main">
-
-    <!-- SIDEBAR -->
-    <aside>
-
-        <div class="top">
-            <div class="logo">
-                <img src="/static/Flood.png" class="logo-img">
+    <div class="container full-main">
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <img src="/static/Flood.png" class="logo-img" alt="Flood Monitoring Logo">
+                </div>
             </div>
-        </div>
 
-        <div class="sidebar">
+            <div class="sidebar">
+                <a href="/">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
 
-            <a href="/">
-                <span class="material-symbols-outlined">dashboard</span>
-                <h3>Dashboard</h3>
-            </a>
+                <a href="/monitoring" class="active">
+                    <span class="material-symbols-outlined">videocam</span>
+                    <h3>Monitoring</h3>
+                </a>
 
-            <a href="/monitoring">
-                <span class="material-symbols-outlined">videocam</span>
-                <h3>Monitoring</h3>
-            </a>
+                <a href="/history">
+                    <span class="material-symbols-outlined">history</span>
+                    <h3>History</h3>
+                </a>
 
-            <a href="/history">
-                <span class="material-symbols-outlined">history</span>
-                <h3>History</h3>
-            </a>
+                <a href="/system">
+                    <span class="material-symbols-outlined">settings_input_component</span>
+                    <h3>System</h3>
+                </a>
 
-            <a href="/system">
-                <span class="material-symbols-outlined">settings_input_component</span>
-                <h3>System</h3>
-            </a>
+                <a href="/settings">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>Settings</h3>
+                </a>
 
-            <a href="/settings">
-                <span class="material-symbols-outlined">settings</span>
-                <h3>Settings</h3>
-            </a>
+                <a href="#" class="logout-link">
+                    <span class="material-symbols-outlined">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END SIDEBAR -->
 
-            <a href="#" class="logout-link">
-                <span class="material-symbols-outlined">logout</span>
-                <h3>Logout</h3>
-            </a>
+        <!-- MAIN -->
+        <main>
+            <h1>Monitoring</h1>
 
-        </div>
+            <div class="camera-container" id="camera-container">
+                <!-- Cards will be injected here -->
+            </div>
+        </main>
+        <!-- END MAIN -->
+    </div>
 
-    </aside>
-    <!-- END SIDEBAR -->
+    <script src="/static/script.js"></script>
+    <script>
+        (function() {
+            const LABELS = ['San Juan River', 'Marketplace'];
+            const container = document.getElementById('camera-container');
 
+            function statusClass(state) {
+                if (!state) return 'status-normal';
 
-    <!-- MAIN -->
-    <main>
+                const s = String(state).toUpperCase();
 
-        <!-- TITLE (LEFT like dashboard) -->
-        <h1>Monitoring</h1>
+                if (s === 'CRITICAL') return 'status-critical';
+                if (s === 'WARNING') return 'status-warning';
+                if (s === 'OVERFLOW') return 'status-overflow';
 
-        <!-- CAMERA CENTER -->
-        <div class="camera-container" id="camera-container">
-            <p id="camera-loading">Scanning for cameras...</p>
-        </div>
-
-    </main>
-    <!-- END MAIN -->
-
-</div>
-
-<script src="/static/script.js"></script>
-<script>
-(function() {
-    const LABELS = ['San Juan River', 'Marketplace'];
-    const container = document.getElementById('camera-container');
-    const loading = document.getElementById('camera-loading');
-    let rendered = false;
-
-    function statusClass(state) {
-        if (!state) return 'status-normal';
-        const s = state.toUpperCase();
-        if (s === 'CRITICAL') return 'status-critical';
-        if (s === 'WARNING' || s === 'OVERFLOW') return 'status-warning';
-        return 'status-normal';
-    }
-
-    function buildCards(cameras) {
-        container.innerHTML = '';
-        if (cameras.length === 0) {
-            container.innerHTML = '<p>No cameras detected. <button onclick="scanCameras()" class="btn">Scan</button></p>';
-            return;
-        }
-        cameras.forEach(function(cam, i) {
-            const label = LABELS[i] || 'Camera ' + (i + 1);
-            const card = document.createElement('div');
-            card.className = 'camera-card';
-            card.id = 'cam-card-' + cam.device_index;
-            card.innerHTML =
-                '<div class="camera-header">' +
-                '  <h2>' + label + '</h2>' +
-                '  <div class="flood-status ' + statusClass(cam.display_state) + '" id="cam-status-' + cam.device_index + '">' +
-                     (cam.display_state || 'WAITING') +
-                '  </div>' +
-                '</div>' +
-                '<div class="camera-view">' +
-                (cam.connected
-                    ? '<img src="/usb/' + cam.device_index + '/feed" alt="' + label + ' Feed" class="camera-feed-img">'
-                    : '<p>Camera Disconnected</p>') +
-                '</div>' +
-                '<div class="camera-info">' +
-                '  <span id="cam-level-' + cam.device_index + '">' + (cam.display_text || 'No data') + '</span>' +
-                '</div>';
-            container.appendChild(card);
-        });
-        rendered = true;
-    }
-
-    function updateStatus(cameras) {
-        cameras.forEach(function(cam) {
-            var badge = document.getElementById('cam-status-' + cam.device_index);
-            if (badge) {
-                badge.textContent = cam.display_state || 'WAITING';
-                badge.className = 'flood-status ' + statusClass(cam.display_state);
+                return 'status-normal';
             }
-            var level = document.getElementById('cam-level-' + cam.device_index);
-            if (level) level.textContent = cam.display_text || 'No data';
-        });
-    }
 
-    function poll() {
-        fetch('/usb/status')
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                var cameras = data.cameras || [];
-                if (!rendered) buildCards(cameras);
-                else updateStatus(cameras);
-            })
-            .catch(function() {
-                if (!rendered) {
-                    container.innerHTML = '<p>Unable to reach camera service.</p>';
-                }
-            });
-    }
+            function createCameraCard(label, cam, indexFallback) {
+                const hasCamera = !!cam;
+                const connected = hasCamera && !!cam.connected;
+                const displayState = hasCamera ? (cam.display_state || 'WAITING') : 'DISCONNECTED';
+                const displayText = hasCamera ? (cam.display_text || 'No data') : 'No camera detected';
+                const status = hasCamera ? statusClass(cam.display_state) : 'status-critical';
+                const deviceIndex = hasCamera ? cam.device_index : indexFallback;
 
-    window.scanCameras = function() {
-        fetch('/usb/scan', { method: 'POST' })
-            .then(function() { rendered = false; poll(); });
-    };
+                return `
+                    <div class="camera-card" id="cam-card-${deviceIndex}">
+                        <div class="camera-header">
+                            <h2>${label}</h2>
+                            <div class="flood-status ${status}" id="cam-status-${deviceIndex}">
+                                ${displayState}
+                            </div>
+                        </div>
+                        <div class="camera-view">
+                            ${
+                                connected
+                                    ? `<img src="/usb/${deviceIndex}/feed" alt="${label} Feed" class="camera-feed-img">`
+                                    : `<p>Camera Disconnected</p>`
+                            }
+                        </div>
+                        <div class="camera-info">
+                            <span id="cam-level-${deviceIndex}">${displayText}</span>
+                        </div>
+                    </div>
+                `;
+            }
 
-    poll();
-    setInterval(poll, 4000);
-})();
-</script>
+            function buildCards(cameras) {
+                const cam0 = cameras[0] || null;
+                const cam1 = cameras[1] || null;
 
+                container.innerHTML = `
+                    ${createCameraCard(LABELS[0], cam0, 0)}
+                    ${createCameraCard(LABELS[1], cam1, 1)}
+                `;
+            }
+
+            function updateCards(cameras) {
+                buildCards(cameras);
+            }
+
+            window.scanCameras = function() {
+                fetch('/usb/scan', { method: 'POST' })
+                    .then(function() {
+                        poll();
+                    })
+                    .catch(function() {
+                        poll();
+                    });
+            };
+
+            function poll() {
+                fetch('/usb/status')
+                    .then(function(r) {
+                        return r.json();
+                    })
+                    .then(function(data) {
+                        var cameras = data.cameras || [];
+                        updateCards(cameras);
+                    })
+                    .catch(function() {
+                        buildCards([]);
+                    });
+            }
+
+            buildCards([]);
+            poll();
+            setInterval(poll, 4000);
+        })();
+    </script>
 </body>
 </html>

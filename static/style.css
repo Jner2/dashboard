@@ -80,17 +80,9 @@ body.dark-mode main .date {
 }
 
 body {
-  background-color: linear-gradient(
-    45deg,
-    #0c0c6d,
-    #de512b,
-    #98d0c1,
-    #5bb226,
-    #023c0d
-  );
   font-family: "Poppins", sans-serif;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   font-size: 0.88rem;
   user-select: none;
   overflow-x: hidden;
@@ -108,22 +100,28 @@ body {
 .container.full-main {
   grid-template-columns: 14rem auto;
 }
+
 a {
   color: var(--clr-dark);
 }
+
 h1 {
   font-weight: 800;
   font-size: 1.8rem;
 }
+
 h2 {
   font-size: 1.4rem;
 }
+
 h3 {
   font-size: 0.87rem;
 }
+
 h4 {
   font-size: 0.8rem;
 }
+
 h5 {
   font-size: 0.77rem;
 }
@@ -131,21 +129,26 @@ h5 {
 small {
   font-size: 0.75rem;
 }
+
 .profile-photo {
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
   overflow: hidden;
 }
+
 .text-muted {
   color: var(--clr-info-dark);
 }
+
 p {
   color: var(--clr-dark-variant);
 }
+
 b {
   color: var(--clr-dark);
 }
+
 .primary {
   color: var(--clr-primary);
 }
@@ -154,33 +157,52 @@ b {
   color: var(--clr-primary);
   text-decoration: none;
 }
+
 .success {
   color: var(--clr-success);
 }
+
 .danger {
   color: var(--clr-danger);
 }
+
 .warning {
   color: var(--clr-warning);
 }
 
 .status-normal {
-  color: green;
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
 .status-warning {
-  color: yellow;
+  background: #ffcc00;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
 .status-critical {
-  color: red;
+  background: #f44336;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
 .status-overflow {
-  color: darkred;
+  background: #b71c1c;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-weight: bold;
 }
 
-/* aside */
+/* ASIDE */
 
 aside {
   height: 100vh;
@@ -190,7 +212,6 @@ aside {
   flex-direction: column;
 }
 
-/* TOP LOGO (CONNECTED) */
 aside .top {
   background-color: var(--clr-white);
   display: flex;
@@ -199,44 +220,35 @@ aside .top {
   padding: 1rem 0;
   border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
 }
-/* LOGO IMAGE */
+
 aside .logo {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
+
 aside .logo-img {
-  width: 100%;
-  height: 100%;
+  width: 160px;
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
+  display: block;
 }
 
-aside .top div.close {
-}
-
-/* ***************
-sidebar
-***************** */
-
-/* SIDEBAR MENU */
 aside .sidebar {
   background-color: var(--clr-white);
   display: flex;
   flex-direction: column;
   height: 100%;
   padding-top: 1rem;
+  border-radius: 0 0 var(--card-border-radius) var(--card-border-radius);
 }
 
-aside .h3 {
-  font-weight: 400;
-}
-
-/* TEXT */
 aside .sidebar a h3 {
   font-size: 0.9rem;
 }
 
-/* SIDEBAR LINKS */
 aside .sidebar a {
   display: flex;
   align-items: center;
@@ -253,7 +265,6 @@ aside .sidebar a span {
   transition: all 0.1s ease-in;
 }
 
-/* LOGOUT (STAY AT BOTTOM) */
 aside .sidebar a.logout-link {
   margin-top: auto;
 }
@@ -263,8 +274,11 @@ aside .sidebar a.active::before {
   width: 6px;
   height: 100%;
   background: var(--clr-primary);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
-/* HOVER EFFECT (CLEAN) */
+
 aside .sidebar a:hover {
   background-color: var(--clr-light);
   color: var(--clr-primary);
@@ -274,6 +288,8 @@ aside .sidebar a:hover {
 aside .sidebar a:hover span {
   transition: 0.4s ease;
 }
+
+/* DARK MODE BUTTON */
 
 .dark-mode-toggle {
   position: absolute;
@@ -301,9 +317,7 @@ aside .sidebar a:hover span {
   background: var(--clr-primary-variant);
 }
 
-/* ***********************************
-        start main section style
-************************************ */
+/* MAIN */
 
 main {
   margin-top: 1.4rem;
@@ -365,6 +379,7 @@ main .insights > div span {
   color: var(--clr-white);
   font-size: 2rem;
 }
+
 main .insights > div.expenses span {
   background: var(--clr-danger);
 }
@@ -378,21 +393,14 @@ main .insights > div .middle {
   align-items: center;
   justify-content: space-between;
 }
+
 main .insights > div .middle h1 {
   font-size: 1.6rem;
 }
 
-main h1 {
-  color: var(--clr-dark);
-}
-
-main .insights h1 {
-  color: var(--clr-dark);
-}
-main .insights h3 {
-  color: var(--clr-dark);
-}
-
+main h1,
+main .insights h1,
+main .insights h3,
 main .insights p {
   color: var(--clr-dark);
 }
@@ -427,11 +435,10 @@ main .camera-view {
 }
 
 .right {
-  margin-top: 1.4rem;
+  margin-top: 125px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  margin-top: 125px;
 }
 
 .right .camera-preview {
@@ -464,6 +471,7 @@ main .camera-view {
   justify-content: center;
   border: 1px solid #ccc;
   font-size: 0.8rem;
+  overflow: hidden;
 }
 
 main .recent_order {
@@ -501,9 +509,7 @@ main .recent_order tbody tr td:last-child {
   text-align: right;
 }
 
-/* ***********************************
-        system css
-************************************ */
+/* SYSTEM / GENERAL CARDS */
 
 .card,
 .system-stats,
@@ -527,6 +533,7 @@ main .recent_order tbody tr td:last-child {
   background: #4caf50;
   color: white;
   border-radius: 6px;
+  cursor: pointer;
 }
 
 .btn.red {
@@ -545,15 +552,12 @@ main .recent_order tbody tr td:last-child {
   background: #5a54d1;
 }
 
-/* ===============================
-   DARK MODE TEXT VISIBILITY FIX
-================================ */
+/* DARK MODE */
 
 body.dark-mode {
   color: #f1f3f5;
 }
 
-/* headings */
 body.dark-mode h1,
 body.dark-mode h2,
 body.dark-mode h3,
@@ -564,7 +568,6 @@ body.dark-mode strong {
   color: #ffffff;
 }
 
-/* paragraph and general text */
 body.dark-mode p,
 body.dark-mode span,
 body.dark-mode small,
@@ -572,18 +575,15 @@ body.dark-mode label {
   color: #e9ecef;
 }
 
-/* sidebar text */
 body.dark-mode aside .sidebar a,
 body.dark-mode aside .sidebar h3 {
   color: #e9ecef;
 }
 
-/* active sidebar */
 body.dark-mode aside .sidebar a.active {
   color: #6c8cff;
 }
 
-/* input fields */
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
@@ -594,30 +594,25 @@ body.dark-mode select {
   border-radius: 5px;
 }
 
-/* input placeholder */
 body.dark-mode input::placeholder {
   color: #adb5bd;
 }
 
-/* table text */
 body.dark-mode table,
 body.dark-mode th,
 body.dark-mode td {
   color: #f1f3f5;
 }
 
-/* table hover */
 body.dark-mode main .recent_order tbody tr:hover {
   background-color: #343a40;
 }
 
-/* camera view */
 body.dark-mode .camera-view {
   background-color: #343a40;
   color: white;
 }
 
-/* buttons */
 body.dark-mode .btn {
   background-color: #3b5bdb;
   color: white;
@@ -627,24 +622,20 @@ body.dark-mode .btn.red {
   background-color: #e03131;
 }
 
-/* card */
 body.dark-mode .card {
   background-color: #2b2f3a;
   color: #f1f3f5;
 }
 
-/* date box */
 body.dark-mode .date {
   background-color: #2b2f3a;
   color: white;
 }
 
-/* right panel */
 body.dark-mode .right .camera-preview {
   color: white;
 }
 
-/* logo title */
 body.dark-mode .logo h2 {
   color: white;
 }
@@ -654,46 +645,42 @@ body.dark-mode .logo h2 {
   width: 100%;
 }
 
-body.dark-mode .date {
-  background: #2b2f3a;
-}
-
 body.dark-mode .date input {
   color: white;
 }
 
-/* CAMERA MONITORING PAGE */
+/* MONITORING CAMERA PAGE */
 
 .camera-container {
-  display: flex;
-  justify-content: center; /* center horizontally */
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(320px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
   width: 100%;
-  flex-wrap: wrap; /* prevents overflow */
   max-width: 1500px;
 }
 
 .camera-card {
-  width: 700px;
-  max-width: 100%; /* IMPORTANT for responsiveness */
   background: var(--clr-white);
   padding: 1.5rem;
   border-radius: 12px;
-  border: 5px solid #110e0e;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  margin-bottom: 100px;
+  border: 2px solid #110e0e;
+  box-shadow: var(--box-shadow);
 }
 
-.camera-card h2 {
+.camera-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
+  gap: 1rem;
 }
 
 .camera-view {
-  height: 250px;
+  height: 300px;
   background: #eaeaea;
   border-radius: 10px;
+  border: 2px dashed #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -721,14 +708,9 @@ body.dark-mode .date input {
 }
 
 .flood-status {
-  margin-top: 12px;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
+  min-width: 110px;
   text-align: center;
 }
-
-/* Dark Mode */
 
 body.dark-mode .camera-card {
   background: #2b2f3a;
@@ -740,92 +722,34 @@ body.dark-mode .camera-view {
   color: white;
 }
 
-/* MONITORING CAMERA CARDS */
+/* RESPONSIVE */
 
-.camera-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  margin-top: 2rem;
+@media (max-width: 1200px) {
+  .container {
+    grid-template-columns: 14rem auto;
+  }
 
-  width: 100%;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.camera-card {
-  background: var(--color-white);
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: var(--box-shadow);
-}
-
-.camera-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.camera-view {
-  height: 300px;
-  background: #eaeaea;
-  border-radius: 10px;
-  border: 2px dashed #ccc; /* NEW */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* FLOOD STATUS COLORS */
-
-.status-warning {
-  background: #ffcc00;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-.status-normal {
-  background: #4caf50;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-.status-critical {
-  background: #f44336;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-.status-overflow {
-  background: #b71c1c;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-/* DARK MODE */
-
-body.dark-mode .camera-card {
-  background: #2b2f3a;
-}
-
-body.dark-mode .camera-view {
-  background: #1f2330;
-  color: white;
+  .right {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
   .camera-container {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+  }
+
+  .container,
+  .container.full-main {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    height: auto;
+    position: relative;
+  }
+
+  .right {
+    display: none;
   }
 }

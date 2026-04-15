@@ -5,227 +5,196 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/style.css">
-    
 </head>
 
 <body>
     <div class="container">
-
-        <!-- aisde section start-->
+        <!-- SIDEBAR -->
         <aside>
-
             <div class="top">
                 <div class="logo">
-                <img src="/static/Flood.png" class="logo-img">
-
+                    <img src="/static/Flood.png" class="logo-img" alt="Flood Monitoring Logo">
+                </div>
             </div>
 
-            <!-- end top -->
-            
             <div class="sidebar">
+                <a href="/" class="active">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
 
-<a href="/">
-                <span class="material-symbols-outlined">dashboard</span>
-                <h3>Dashboard</h3>
-            </a>
+                <a href="/monitoring">
+                    <span class="material-symbols-outlined">videocam</span>
+                    <h3>Monitoring</h3>
+                </a>
 
-            <a href="/monitoring">
-                <span class="material-symbols-outlined">videocam</span>
-                <h3>Monitoring</h3>
-            </a>
+                <a href="/history">
+                    <span class="material-symbols-outlined">history</span>
+                    <h3>History</h3>
+                </a>
 
-            <a href="/history">
-                <span class="material-symbols-outlined">history</span>
-                <h3>History</h3>
-            </a>
+                <a href="/system">
+                    <span class="material-symbols-outlined">settings_input_component</span>
+                    <h3>System</h3>
+                </a>
 
-            <a href="/system">
-                <span class="material-symbols-outlined">settings_input_component</span>
-                <h3>System</h3>
-            </a>
-
-            <a href="/settings">
-                <span class="material-symbols-outlined">settings</span>
-                <h3>Settings</h3>
+                <a href="/settings">
+                    <span class="material-symbols-outlined">settings</span>
+                    <h3>Settings</h3>
                 </a>
 
                 <a href="#" class="logout-link">
-                <span class="material-symbols-outlined">logout</span>
-                <h3>Logout</h3>
+                    <span class="material-symbols-outlined">logout</span>
+                    <h3>Logout</h3>
                 </a>
-
             </div>
-
-
         </aside>
-    <!-- aisde section end -->
+        <!-- END SIDEBAR -->
 
-    <!-- main section start -->
-    <main>
-        <h1>Dashboard</h1>
+        <!-- MAIN -->
+        <main>
+            <h1>Dashboard</h1>
 
             <div class="date">
                 <input type="date">
             </div>
-            
-        <div class="insights">
-            <!-- start selling -->
-             <div class="sales">
-                <span class="material-symbols-outlined">flood</span>
-                <div class="middle">
-                    <div class="left">
-                        <h1>Flood Status</h1>
-                        <h3 id="flood-level-text" class="status-normal">Detecting...</h3> 
-                        <h3 id="current-confidence">Confidence: 95%</h3>
+
+            <div class="insights">
+                <div class="sales">
+                    <span class="material-symbols-outlined">flood</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>Flood Status</h1>
+                            <h3 id="flood-level-text" class="status-normal">Detecting...</h3>
+                            <h3 id="current-confidence">Confidence: 95%</h3>
+                        </div>
                     </div>
+                    <small id="last-update">Last 24 Hours</small>
                 </div>
-                <small id="last-update">Last 24 Hours</small>
-             </div>
-             <!-- end selling -->
 
-            <!-- start expenses -->
-             <div class="expenses" onclick="document.getElementById('imageInput').click()" style="cursor: pointer;">
-                <span class="material-symbols-outlined">image_arrow_up</span>
-                <div class="middle">
-                    <div class="left">
-                        <h1>Upload Image</h1>
-                        <h3 id="upload-status-text">Click to Analyze</h3>
-                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <div class="expenses" onclick="document.getElementById('imageInput').click()" style="cursor: pointer;">
+                    <span class="material-symbols-outlined">image_arrow_up</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>Upload Image</h1>
+                            <h3 id="upload-status-text">Click to Analyze</h3>
+                            <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                        </div>
                     </div>
+                    <small id="upload-time">Manual Check</small>
                 </div>
-                <small id="upload-time">Manual Check</small>
-             </div>
-             <!-- end expenses -->
 
-            <!-- start income -->
-             <div class="income">
-                <span class="material-symbols-outlined">leaderboard</span>
-                <div class="middle">
-                    <div class="left">
-                        <h1>System Stats</h1>
-                        <h3 id="stat-model">Model: CNN Flood Classifier</h3>
-                        <h3 id="stat-platform">Platform: Raspberry Pi 5</h3>
-                        <h3 id="stat-cpu">CPU Usage: 0%</h3> <h3 id="stat-status">Status: Running</h3>
+                <div class="income">
+                    <span class="material-symbols-outlined">leaderboard</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h1>System Stats</h1>
+                            <h3 id="stat-model">Model: CNN Flood Classifier</h3>
+                            <h3 id="stat-platform">Platform: Raspberry Pi 5</h3>
+                            <h3 id="stat-cpu">CPU Usage: 0%</h3>
+                            <h3 id="stat-status">Status: Running</h3>
+                        </div>
                     </div>
+                    <small>Real-time Diagnostics</small>
                 </div>
-                <small>Real-time Diagnostics</small>
-             </div>
-             <!-- end income -->
-        </div>
-        <!-- end inside -->
-            <!-- start recent order -->
-    <div class="recent_order">
-        <h1>SMS Notifications</h1>
-        <table>
+            </div>
 
-            <thead>
-                <tr>
-                    <th>Location</th>
-                    <th>Time</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
+            <div class="recent_order">
+                <h1>SMS Notifications</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-overflow">Overflow</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>Marketplace</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-warning">Warning</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-overflow">Overflow</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-critical">Critical</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-critical">Critical</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-critical">Critical</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-normal">Normal</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>San Juan River</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-normal">Normal</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>Marketplace</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-normal">Normal</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                        <tr>
+                            <td>Marketplace</td>
+                            <td>10:10AM</td>
+                            <td>April 9, 2026</td>
+                            <td class="status-normal">Normal</td>
+                            <td class="primary"><a href="#">Details</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <!-- END MAIN -->
 
-
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-overflow">Overflow</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>Marketplace</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-warning">Warning</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-overflow">Overflow</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-critical">Critical</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-critical">Critical</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-critical">Critical</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-normal">Normal</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>San Juan River</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-normal">Normal</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>Marketplace</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-normal">Normal</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-                <tr>
-                    <td>Marketplace</td>
-                    <td>10:10AM</td>
-                    <td>April 9, 2026</td>
-                    <td class="status-normal">Normal</td>
-                    <td class="primary"><a href="#">Details</a></td>
-                </tr>
-
-
-            </tbody>
-
-        </table>
-    </div>
-
-
-
-
-
-
-
-            <!-- end recent order -->
-
-
-
-
-    </main>
-    <!-- main section end -->
-
-    <!-- right section start -->
+        <!-- RIGHT PANEL -->
         <div class="right">
             <div class="camera-preview" id="dash-cam-0">
                 <h3>San Juan River</h3>
@@ -233,6 +202,7 @@
                     <p>Loading...</p>
                 </div>
             </div>
+
             <div class="camera-preview" id="dash-cam-1">
                 <h3>Marketplace</h3>
                 <div class="camera-view">
@@ -240,38 +210,56 @@
                 </div>
             </div>
         </div>
+        <!-- END RIGHT PANEL -->
     </div>
-    <!-- right section end -->
 
     <script src="/static/script.js"></script>
-<script>
-(function() {
-    const LABELS = ['San Juan River', 'Marketplace'];
+    <script>
+        (function() {
+            const LABELS = ['San Juan River', 'Marketplace'];
 
-    function poll() {
-        fetch('/usb/status')
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                var cameras = data.cameras || [];
-                cameras.forEach(function(cam, i) {
-                    var el = document.getElementById('dash-cam-' + i);
-                    if (!el) return;
-                    var label = LABELS[i] || 'Camera ' + (i + 1);
-                    var view = el.querySelector('.camera-view');
-                    if (cam.connected) {
-                        view.innerHTML = '<img src="/usb/' + cam.device_index + '/feed" alt="' + label + '" class="camera-feed-img-sm">';
-                    } else {
-                        view.innerHTML = '<p>Disconnected</p>';
-                    }
-                });
-            })
-            .catch(function() {});
-    }
+            function renderDisconnectedCard(el, label) {
+                const view = el.querySelector('.camera-view');
+                view.innerHTML = '<p>Disconnected</p>';
+                el.querySelector('h3').textContent = label;
+            }
 
-    poll();
-    setInterval(poll, 10000);
-})();
-</script>
+            function poll() {
+                fetch('/usb/status')
+                    .then(function(r) {
+                        return r.json();
+                    })
+                    .then(function(data) {
+                        var cameras = data.cameras || [];
+
+                        for (var i = 0; i < 2; i++) {
+                            var el = document.getElementById('dash-cam-' + i);
+                            if (!el) continue;
+
+                            var label = LABELS[i] || ('Camera ' + (i + 1));
+                            var cam = cameras[i];
+
+                            if (cam && cam.connected) {
+                                var view = el.querySelector('.camera-view');
+                                view.innerHTML = '<img src="/usb/' + cam.device_index + '/feed" alt="' + label + '" class="camera-feed-img-sm">';
+                                el.querySelector('h3').textContent = label;
+                            } else {
+                                renderDisconnectedCard(el, label);
+                            }
+                        }
+                    })
+                    .catch(function() {
+                        for (var i = 0; i < 2; i++) {
+                            var el = document.getElementById('dash-cam-' + i);
+                            if (!el) continue;
+                            renderDisconnectedCard(el, LABELS[i]);
+                        }
+                    });
+            }
+
+            poll();
+            setInterval(poll, 10000);
+        })();
+    </script>
 </body>
 </html>
-
